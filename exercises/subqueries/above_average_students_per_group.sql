@@ -22,12 +22,8 @@ groups_avg_score AS (
         JOIN enrolment e on s.student_id = e.student_id
     GROUP BY s.group_id
 )
-SELECT 
-    s.student_id as "student_id", 
-    p.first_name || ' ' || p.last_name as "full_name", 
-    sg.name as "group_name",
-    ROUND(sa.raw_avg, 2) as "avg_student_grade", 
-    ROUND(ga.raw_group_avg, 2) as "avg_group_grade"
+SELECT s.student_id as "student_id", p.first_name || ' ' || p.last_name as "full_name", sg.name as "group_name",
+    ROUND(sa.raw_avg, 2) as "avg_student_grade", ROUND(ga.raw_group_avg, 2) as "avg_group_grade"
 FROM student s
     JOIN person p on s.person_id = p.person_id
     JOIN student_group sg on s.group_id = sg.group_id
